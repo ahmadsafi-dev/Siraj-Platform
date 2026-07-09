@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "منصة التطوع - الجامعة الأردنية"
+version = "1.0.0"
+id = "artifacts/jordan-volunteer"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19249
+
+[services.development]
+run = "pnpm --filter @workspace/jordan-volunteer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/jordan-volunteer", "run", "build" ]
+publicDir = "artifacts/jordan-volunteer/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19249"
+BASE_PATH = "/"

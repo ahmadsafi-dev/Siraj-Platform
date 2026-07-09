@@ -1,0 +1,491 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification for the University of Jordan Volunteer Platform
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: auth
+    description: Authentication and account management
+  - name: requests
+    description: Help request operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /auth/register:
+    post:
+      operationId: register
+      tags: [auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterInput"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Phone already registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: login
+      tags: [auth]
+      summary: Login with phone and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/logout:
+    post:
+      operationId: logout
+      tags: [auth]
+      summary: Logout current user
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current authenticated user
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /requests:
+    get:
+      operationId: listRequests
+      tags: [requests]
+      summary: List all active help requests
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [open, accepted, completed]
+      responses:
+        "200":
+          description: List of requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HelpRequest"
+    post:
+      operationId: createRequest
+      tags: [requests]
+      summary: Create a new help request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HelpRequestInput"
+      responses:
+        "201":
+          description: Request created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelpRequest"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /requests/summary:
+    get:
+      operationId: getRequestsSummary
+      tags: [requests]
+      summary: Get summary stats for requests dashboard
+      responses:
+        "200":
+          description: Summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RequestsSummary"
+
+  /requests/my:
+    get:
+      operationId: getMyRequests
+      tags: [requests]
+      summary: Get requests created by the current student
+      responses:
+        "200":
+          description: My requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HelpRequest"
+
+  /requests/{id}:
+    get:
+      operationId: getRequest
+      tags: [requests]
+      summary: Get a specific help request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: The request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelpRequest"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteRequest
+      tags: [requests]
+      summary: Delete a help request (student only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Request deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessResponse"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /requests/{id}/volunteer:
+    post:
+      operationId: volunteerForRequest
+      tags: [requests]
+      summary: Volunteer accepts a help request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully volunteered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelpRequest"
+        "400":
+          description: Request already accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /requests/{id}/complete:
+    post:
+      operationId: completeRequest
+      tags: [requests]
+      summary: Student marks a request as completed
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Request marked as completed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelpRequest"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    SuccessResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        phone:
+          type: string
+        role:
+          type: string
+          enum: [student, volunteer]
+        fullName:
+          type: string
+        major:
+          type: ["string", "null"]
+        university:
+          type: ["string", "null"]
+        acceptedRequestsCount:
+          type: integer
+        completedRequestsCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - phone
+        - role
+        - fullName
+        - createdAt
+
+    AuthResponse:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        message:
+          type: string
+      required:
+        - user
+        - message
+
+    RegisterInput:
+      type: object
+      properties:
+        phone:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: [student, volunteer]
+        fullName:
+          type: string
+        major:
+          type: string
+        university:
+          type: string
+      required:
+        - phone
+        - password
+        - role
+        - fullName
+        - university
+
+    LoginInput:
+      type: object
+      properties:
+        phone:
+          type: string
+        password:
+          type: string
+      required:
+        - phone
+        - password
+
+    HelpRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        studentName:
+          type: string
+        studentMajor:
+          type: ["string", "null"]
+        studentPhone:
+          type: string
+        studentUniversity:
+          type: ["string", "null"]
+        volunteerId:
+          type: ["integer", "null"]
+        volunteerName:
+          type: ["string", "null"]
+        subjectName:
+          type: string
+        isExam:
+          type: boolean
+        examDate:
+          type: ["string", "null"]
+          format: date-time
+        examLocation:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: [open, accepted, completed]
+        notes:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - studentId
+        - studentName
+        - studentPhone
+        - subjectName
+        - isExam
+        - status
+        - createdAt
+
+    HelpRequestInput:
+      type: object
+      properties:
+        subjectName:
+          type: string
+        isExam:
+          type: boolean
+        examDate:
+          type: string
+          format: date-time
+        examLocation:
+          type: string
+        notes:
+          type: string
+      required:
+        - subjectName
+        - isExam
+
+    RequestsSummary:
+      type: object
+      properties:
+        totalOpen:
+          type: integer
+        totalAccepted:
+          type: integer
+        totalCompleted:
+          type: integer
+        recentRequests:
+          type: array
+          items:
+            $ref: "#/components/schemas/HelpRequest"
+      required:
+        - totalOpen
+        - totalAccepted
+        - totalCompleted
+        - recentRequests
