@@ -1,0 +1,1 @@
+{"version":3,"file":"requestsSummary.d.ts","sourceRoot":"","sources":["../../../src/generated/types/requestsSummary.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AAEjD,MAAM,WAAW,eAAe;IAC9B,SAAS,EAAE,MAAM,CAAC;IAClB,aAAa,EAAE,MAAM,CAAC;IACtB,cAAc,EAAE,MAAM,CAAC;IACvB,cAAc,EAAE,WAAW,EAAE,CAAC;CAC/B"}

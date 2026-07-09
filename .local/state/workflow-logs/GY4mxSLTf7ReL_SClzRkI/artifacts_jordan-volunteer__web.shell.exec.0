@@ -1,0 +1,184 @@
+
+> @workspace/jordan-volunteer@0.0.0 dev /home/runner/workspace/artifacts/jordan-volunteer
+> vite --config vite.config.ts --host 0.0.0.0
+
+[replit-cartographer] Loaded @theme tokens from /home/runner/workspace/artifacts/jordan-volunteer/src/index.css
+
+  [32m[1mVITE[22m v7.3.5[39m  [2mready in [0m[1m1340[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m19249[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.24.0.2:[1m19249[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:03 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/landing.tsx, /src/index.css[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:22 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/lib/auth-context.tsx, /src/pages/login.tsx, /src/pages/student/dashboard.tsx, /src/pages/register.tsx, /src/pages/volunteer/dashboard.tsx, /src/pages/student/new-request.tsx[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:22 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/lib/auth-context.tsx, /src/pages/login.tsx, /src/pages/student/dashboard.tsx, /src/pages/register.tsx, /src/pages/volunteer/dashboard.tsx, /src/pages/student/new-request.tsx[22m [33m(x2)[39m
+[2m9:42:22 AM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to load url /@fs/home/runner/workspace/lib/api-client-react/src/generated/api.ts (resolved id: /home/runner/workspace/lib/api-client-react/src/generated/api.ts) in /home/runner/workspace/lib/api-client-react/src/index.ts. Does the file exist?
+[2m9:42:22 AM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to load url /@fs/home/runner/workspace/lib/api-client-react/src/generated/api.schemas.ts (resolved id: /home/runner/workspace/lib/api-client-react/src/generated/api.schemas.ts) in /home/runner/workspace/lib/api-client-react/src/index.ts. Does the file exist?
+[2m9:42:24 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/lib/auth-context.tsx[22m Could not Fast Refresh ("useAuth" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m9:42:24 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/components/layout.tsx, /src/pages/student/dashboard.tsx, /src/pages/volunteer/dashboard.tsx[22m
+[RUNTIME_ERROR]{"type":"runtime-error","timestamp":1783503744192,"name":"Error","message":"useAuth must be used within an AuthProvider","stack":"    at useAuth /home/runner/workspace/artifacts/jordan-volunteer/src/lib/auth-context.tsx:67:11\n    at RootRedirect /home/runner/workspace/artifacts/jordan-volunteer/src/App.tsx:81:31\n\n\n\n\n\n\n\n","loc":{"line":67,"column":11,"file":"/home/runner/workspace/artifacts/jordan-volunteer/src/lib/auth-context.tsx"},"frame":"65 |    const context = useContext(AuthContext);\n66 |    if (context === undefined) {\n67 |      throw new Error(\"useAuth must be used within an AuthProvider\");\n   |            ^\n68 |    }\n69 |    return context;"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:30 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/register.tsx, /src/index.css[22m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:39 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/register.tsx, /src/index.css[22m [33m(x2)[39m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:41 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/register.tsx, /src/index.css[22m [33m(x3)[39m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1;1H[0J[2m9:42:46 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/register.tsx, /src/index.css[22m [33m(x4)[39m
