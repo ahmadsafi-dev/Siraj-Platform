@@ -24,7 +24,7 @@ app.use(express.static(frontendPath));
 
 // --- React Router Catch-All ---
 // If a user navigates to a non-API route, send them the React index.html
-app.get("*", (req, res) => {
+app.get(/(.*)/, (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
