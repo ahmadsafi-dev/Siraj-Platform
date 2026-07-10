@@ -18,13 +18,22 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
-// --- Serve Frontend Static Files ---
-const frontendPath = path.join(process.cwd(), "artifacts/jordan-volunteer/dist");
+// --- Serve Frontend Static Files (Foolproof Auto-Detect) ---
+const frontendBase = path.join(process.cwd(), "artifacts/jordan-volunteer");
+let frontendPath = path.join(frontendBase, "dist"); // Default fallback
 
-// Diagnostic log to guarantee the file exists on boot
 console.log("--- STARTUP DIAGNOSTICS ---");
+// Auto-detect where Vite actually placed the compiled UI
+if (fs.existsSync(path.join(frontendBase, "public", "index.html"))) {
+    frontendPath = path.join(frontendBase, "public");
+} else if (fs.existsSync(path.join(frontendBase, "build", "index.html"))) {
+    frontendPath = path.join(frontendBase, "build");
+} else if (fs.existsSync(path.join(frontendBase, "dist", "index.html"))) {
+    frontendPath = path.join(frontendBase, "dist");
+}
+
 console.log("Target Frontend Path:", frontendPath);
-console.log("Did Vite build index.html?", fs.existsSync(path.join(frontendPath, "index.html")));
+console.log("Did we find index.html?", fs.existsSync(path.join(frontendPath, "index.html")));
 console.log("---------------------------");
 
 app.use(express.static(frontendPath));
