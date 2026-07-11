@@ -46,27 +46,36 @@ export function Layout({ children }: { children: ReactNode }) {
       </main>
 
       <footer className="bg-white border-t py-5">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted-foreground">
-          <span>تم برمجة واعداد هذا الموقع بواسطة م. أحمد صافي</span>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://www.linkedin.com/in/ahmad-safi02"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="ملف أحمد صافي على LinkedIn"
-              className="text-muted-foreground hover:text-[#0A66C2] transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.github.com/ahmadsafi-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="ملف أحمد صافي على GitHub"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github className="w-5 h-5" />
-            </a>
+        <div className="container mx-auto px-4 flex flex-col items-center justify-center gap-3 text-sm text-muted-foreground">
+          <a
+            href="mailto:info@sirajplatform.org"
+            className="text-primary font-semibold hover:underline"
+            aria-label="مراسلة فريق دعم منصة سراج"
+          >
+            هل لديك استفسار أو اقتراح ؟ تواصل معنا عبر البريد الالكتروني من هنا
+          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <span>تم برمجة واعداد هذا الموقع بواسطة م. أحمد صافي</span>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/in/ahmad-safi02"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ملف أحمد صافي على LinkedIn"
+                className="text-muted-foreground hover:text-[#0A66C2] transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.github.com/ahmadsafi-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ملف أحمد صافي على GitHub"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </footer>
