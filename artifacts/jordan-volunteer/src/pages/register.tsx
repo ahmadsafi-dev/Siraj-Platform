@@ -116,7 +116,7 @@ export default function Register() {
         <CardHeader className="text-center pb-8 border-b border-border/50 mb-6">
           <CardTitle className="text-3xl font-bold text-primary mb-2">إنشاء حساب جديد</CardTitle>
           <CardDescription className="text-lg">
-            انضم إلى منصة التطوع للجامعة الأردنية
+            انضم إلى منصة سراج
           </CardDescription>
         </CardHeader>
         <CardContent>

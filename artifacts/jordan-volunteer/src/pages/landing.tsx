@@ -1,12 +1,13 @@
 import { Link } from "wouter";
+import { Linkedin, Github } from "lucide-react";
 
 export default function Landing() {
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center bg-[#f7f8fa] px-6"
+      className="min-h-screen flex flex-col bg-[#f7f8fa] px-6"
       dir="rtl"
     >
-      <div className="flex flex-col items-center text-center max-w-sm w-full">
+      <div className="flex-1 flex flex-col items-center justify-center text-center max-w-sm w-full mx-auto">
         <img
           src="/logo.png"
           alt="شعار منصة سراج"
@@ -42,6 +43,32 @@ export default function Landing() {
           </Link>
         </div>
       </div>
+
+      <footer className="bg-white border-t py-5 mx-[-24px]">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted-foreground">
+          <span>تم برمجة واعداد هذا الموقع بواسطة م. أحمد صافي</span>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/ahmad-safi02"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ملف أحمد صافي على LinkedIn"
+              className="text-muted-foreground hover:text-[#0A66C2] transition-colors"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.github.com/ahmadsafi-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="ملف أحمد صافي على GitHub"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
