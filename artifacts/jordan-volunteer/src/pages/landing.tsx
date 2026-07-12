@@ -51,7 +51,7 @@ export default function Landing() {
             className="text-primary font-semibold hover:underline"
             aria-label="مراسلة فريق دعم منصة سراج"
           >
-            هل لديك استفسار أو اقتراح ؟ تواصل معنا عبر البريد الالكتروني من هنا
+            هل لديك استفسار أو اقتراح ؟ تواصل معنا عبر البريد الالكتروني
           </a>
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <span>تم برمجة واعداد هذا الموقع بواسطة م. أحمد صافي</span>
