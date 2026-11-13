@@ -7,7 +7,7 @@ const CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
 
 function sessionExpiry(sessionData: session.SessionData): Date {
   const expires = sessionData.cookie.expires;
-  return expires ? new Date(expires) : new Date(Date.now() + SESSION_TTL_MS);
+  return expires ? new Date(expires.getTime()) : new Date(Date.now() + SESSION_TTL_MS);
 }
 
 export class PostgresSessionStore extends session.Store {
