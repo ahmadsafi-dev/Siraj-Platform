@@ -5,8 +5,16 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import { PostgresSessionStore } from "./lib/postgres-session-store";
 
 const app: Express = express();
+
+// Render terminates HTTPS before forwarding requests to this service.
+// Trust its proxy so express-session can set Secure cookies from
+// the X-Forwarded-Proto header in production.
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
 
 app.use(
   pinoHttp({
@@ -43,6 +51,7 @@ if (!process.env.SESSION_SECRET) {
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    store: new PostgresSessionStore(),
     resave: false,
     saveUninitialized: false,
     cookie: {
