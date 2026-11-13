@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useAuth } from "@/lib/auth-context";
 import { Link } from "wouter";
-import { LogOut, Linkedin, Github } from "lucide-react";
+import { LogOut, Linkedin, Github, Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -74,6 +74,24 @@ export function Layout({ children }: { children: ReactNode }) {
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/sirajplatform"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="صفحة منصة سراج على Instagram"
+                className="text-muted-foreground hover:text-[#E4405F] transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/sirajplatform.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="صفحة منصة سراج على Facebook"
+                className="text-muted-foreground hover:text-[#1877F2] transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
