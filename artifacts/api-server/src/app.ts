@@ -8,6 +8,13 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+// Render terminates HTTPS before forwarding requests to this service.
+// Trust its proxy so express-session can set Secure cookies from
+// the X-Forwarded-Proto header in production.
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 app.use(
   pinoHttp({
     logger,
