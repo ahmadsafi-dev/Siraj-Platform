@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import router from "./routes";
 import { logger } from "./lib/logger";
+import { PostgresSessionStore } from "./lib/postgres-session-store";
 
 const app: Express = express();
 
@@ -50,6 +51,7 @@ if (!process.env.SESSION_SECRET) {
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    store: new PostgresSessionStore(),
     resave: false,
     saveUninitialized: false,
     cookie: {
